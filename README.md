@@ -8,7 +8,15 @@
 
 This package provides a PHP SDK for interacting with the [factureaza.ro GraphQL API](https://factureaza.ro/documentatie-api).
 
+## Installation
+
 > The minimum requirement of this package is PHP 8.1.
+
+To install this library in your application, use composer:
+
+```bash
+composer require konekt/factureaza-sdk
+```
 
 ## Usage
 
