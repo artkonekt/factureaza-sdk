@@ -1,6 +1,5 @@
 # Factureaza PHP SDK Changelog
 
-
 ## 1.4.0
 ##### 2022-10-12
 
