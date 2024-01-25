@@ -5,6 +5,7 @@
 
 - Added Laravel 11 support
 - Added PHP 8.3 support
+- Fixed failing tests with 2024 Sandbox data
 
 ## 1.4.0
 ##### 2022-10-12
