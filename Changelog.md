@@ -1,7 +1,7 @@
 # Factureaza PHP SDK Changelog
 
-## Unreleased
-##### 2023-XX-YY
+## 1.5.0
+##### 2024-01-25
 
 - Added Laravel 11 support
 - Added PHP 8.3 support
