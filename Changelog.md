@@ -5,6 +5,7 @@
 
 - Added Laravel 11 support
 - Added PHP 8.3 support
+- Added `clientByName()` and `clientByEmail()` methods (Thanks [@ionutcalara](https://github.com/ionutcalara)!)
 - Fixed failing tests with 2024 Sandbox data
 
 ## 1.4.0

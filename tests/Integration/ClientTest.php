@@ -61,6 +61,26 @@ class ClientTest extends TestCase
     }
 
     /** @test */
+    public function it_can_retrieve_a_client_by_email()
+    {
+        $client = Factureaza::sandbox()->clientByEmail('office@cubus.ro');
+
+        $this->assertInstanceOf(Client::class, $client);
+        $this->assertEquals('1064116434', $client->id);
+        $this->assertEquals('13548146', $client->taxNo);
+    }
+
+    /** @test */
+    public function it_can_retrieve_a_client_by_name()
+    {
+        $client = Factureaza::sandbox()->clientByName('CUBUS ARTS S.R.L.');
+
+        $this->assertInstanceOf(Client::class, $client);
+        $this->assertEquals('1064116434', $client->id);
+        $this->assertEquals('13548146', $client->taxNo);
+    }
+
+    /** @test */
     public function it_can_create_a_client_with_minimal_data()
     {
         $client = Factureaza::sandbox()->createClient([

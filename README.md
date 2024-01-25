@@ -182,11 +182,26 @@ $client = Factureaza::sandbox()->client('1064116434');
 //   }
 ```
 
-#### Find a Client by Tax Number
+#### Find a Client By Other Fields
+
+By Tax Number:
 
 ```php
 $client = Factureaza::sandbox()->clientByTaxNo('13548146');
 ```
+
+By E-mail address:
+
+```php
+$client = Factureaza::sandbox()->clientByEmail('client@email.ro');
+```
+
+By name:
+
+```php
+$client = Factureaza::sandbox()->clientByName('Client SRL');
+```
+
 
 ### Create a Client
 

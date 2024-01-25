@@ -19,6 +19,8 @@ use Konekt\Factureaza\Exceptions\FactureazaException;
 use Konekt\Factureaza\Models\Client;
 use Konekt\Factureaza\Requests\CreateClient;
 use Konekt\Factureaza\Requests\GetClient;
+use Konekt\Factureaza\Requests\GetClientByEmail;
+use Konekt\Factureaza\Requests\GetClientByName;
 use Konekt\Factureaza\Requests\GetClientByTaxNo;
 
 trait Clients
@@ -34,6 +36,22 @@ trait Clients
     public function clientByTaxNo(string $taxNo): ?Client
     {
         $response = $this->query(new GetClientByTaxNo($taxNo));
+        $data = $response->json('data')['clients'][0] ?? null;
+
+        return is_null($data) ? null : new Client($this->remap($data, Client::class));
+    }
+
+    public function clientByEmail(string $email): ?Client
+    {
+        $response = $this->query(new GetClientByEmail($email));
+        $data = $response->json('data')['clients'][0] ?? null;
+
+        return is_null($data) ? null : new Client($this->remap($data, Client::class));
+    }
+
+    public function clientByName(string $name): ?Client
+    {
+        $response = $this->query(new GetClientByName($name));
         $data = $response->json('data')['clients'][0] ?? null;
 
         return is_null($data) ? null : new Client($this->remap($data, Client::class));
