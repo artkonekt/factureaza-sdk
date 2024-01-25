@@ -3,6 +3,8 @@
     "description": "SDK for factureaza.ro API",
     "type": "library",
     "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "keywords": ["billing", "invoicing", "factureaza", "factureaza.ro"],
     "support": {
         "source": "https://github.com/artkonekt/factureaza-sdk",
