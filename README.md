@@ -242,4 +242,3 @@ personal identification number (CNP) of a natural person.
 
 If you try to create a client with a `taxNo` that already exists, a `ClientExistsException`
 is thrown.
-
