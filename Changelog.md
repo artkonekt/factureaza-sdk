@@ -1,5 +1,10 @@
 # Factureaza PHP SDK Changelog
 
+## Unreleased
+##### 2024-XX-YY
+
+- Fixed possible type errors when EU id or address2 is null in the account
+
 ## 1.5.0
 ##### 2024-01-25
 

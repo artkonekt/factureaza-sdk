@@ -28,7 +28,7 @@ class MyAccount implements Resource
 
     public readonly string $address1;
 
-    public readonly string $address2;
+    public readonly ?string $address2;
 
     public readonly string $zip;
 
@@ -46,7 +46,7 @@ class MyAccount implements Resource
 
     public readonly string $taxNoPrefix;
 
-    public readonly string $euid;
+    public readonly ?string $euid;
 
     public readonly string $domesticCurrency;
 
