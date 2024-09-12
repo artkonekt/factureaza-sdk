@@ -216,7 +216,7 @@ final class Factureaza
         }
 
         if (!$response->successful() && !$response->notFound()) {
-            throw match($response->status()) {
+            throw match ($response->status()) {
                 401 => UnauthorizedException::make(),
                 default => new FactureazaException(sprintf('Request failed with status %d. %s', $response->status(), Str::limit($response->body()))),
             };
