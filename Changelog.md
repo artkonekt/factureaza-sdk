@@ -1,7 +1,7 @@
 # Factureaza PHP SDK Changelog
 
-## Unreleased
-##### 2024-XX-YY
+## 1.6.0
+##### 2024-09-12
 
 - Fixed possible type errors when EU id or address2 is null in the account
 - Changed the API handler so that apart from 404, an exception is thrown
