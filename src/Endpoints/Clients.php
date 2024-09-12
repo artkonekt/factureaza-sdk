@@ -66,6 +66,8 @@ trait Clients
             if (1 === preg_match('/(CIF).*(exist).*(client)/i', $e->getMessage())) {
                 throw new ClientExistsException($e->getMessage());
             }
+
+            throw $e;
         }
 
         return new Client(

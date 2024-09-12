@@ -4,6 +4,8 @@
 ##### 2024-XX-YY
 
 - Fixed possible type errors when EU id or address2 is null in the account
+- Changed the API handler so that apart from 404, an exception is thrown
+- Added the throwing of `UnauthorizedException` on 401 API responses
 
 ## 1.5.0
 ##### 2024-01-25

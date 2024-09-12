@@ -20,11 +20,13 @@ use DateTimeZone;
 use Illuminate\Http\Client\Factory as HttpClient;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Konekt\Enum\Enum;
 use Konekt\Factureaza\Contracts\Mutation;
 use Konekt\Factureaza\Contracts\Query;
 use Konekt\Factureaza\Contracts\Resource;
 use Konekt\Factureaza\Exceptions\FactureazaException;
+use Konekt\Factureaza\Exceptions\UnauthorizedException;
 use Konekt\Factureaza\Models\GraphQLOperation;
 use ReflectionNamedType;
 
@@ -205,11 +207,20 @@ final class Factureaza
 
     private function checkForErrors(Response $response): void
     {
-        if (null === $errors = $response->json('errors')) {
-            return;
+        if (null !== $errors = $response->json('errors')) {
+            throw new FactureazaException($errors[0]['message']);
         }
 
-        throw new FactureazaException($errors[0]['message']);
+        if (null !== $error = $response->json('error')) {
+            throw new FactureazaException($error['message']);
+        }
+
+        if (!$response->successful() && !$response->notFound()) {
+            throw match($response->status()) {
+                401 => UnauthorizedException::make(),
+                default => new FactureazaException(sprintf('Request failed with status %d. %s', $response->status(), Str::limit($response->body()))),
+            };
+        }
     }
 
     private function toGraphQLArguments(array $arguments): string

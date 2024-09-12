@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Konekt\Factureaza\Tests;
 
+use Konekt\Factureaza\Exceptions\UnauthorizedException;
 use Konekt\Factureaza\Factureaza;
 use PHPUnit\Framework\TestCase;
 
@@ -73,5 +74,15 @@ class FactureazaClientTest extends TestCase
         $utcDate = $api->myAccount()->createdAt;
         $this->assertEquals('2014-06-06 13:23:34', $utcDate->format('Y-m-d H:i:s'));
         $this->assertEquals(0, $utcDate->getTimezone()->getOffset($utcDate));
+    }
+
+    /** @test */
+    public function it_throws_an_exception_if_the_credentials_are_invalid()
+    {
+        $api = Factureaza::connect('invalid-api-key');
+        $this->expectException(UnauthorizedException::class);
+        $this->expectExceptionMessage('401');
+
+        $api->myAccount();
     }
 }
