@@ -9,6 +9,7 @@
 - Changed the minimum Carbon version to 3.8
 - Dropped support for Laravel 8, 9 and 10
 - Dropped support for Carbon 2
+- Dropped support for Enum v3
 
 ## 1.6.0
 ##### 2024-09-12
