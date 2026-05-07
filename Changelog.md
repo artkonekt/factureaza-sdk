@@ -10,6 +10,7 @@
 - Dropped support for Laravel 8, 9 and 10
 - Dropped support for Carbon 2
 - Dropped support for Enum v3
+- Fixed failing tests with 2026 Sandbox data
 
 ## 1.6.0
 ##### 2024-09-12

@@ -26,10 +26,12 @@ class InvoiceTest extends TestCase
     #[Test]
     public function it_can_create_an_invoice_in_the_sandbox_environment()
     {
+        $emissionDate = date('Y-m-d');
+
         $api = Factureaza::sandbox();
-        $request = CreateInvoice::inSeries('1061104681')
+        $request = CreateInvoice::inSeries('1061105379')
             ->forClient('1064116434')
-            ->withEmissionDate('2024-01-17')
+            ->withEmissionDate($emissionDate)
             ->withUpperAnnotation('Hello I am on the top')
             ->withLowerAnnotation('Hello I smell the bottom')
             ->addItem(['description' => 'Service', 'price' => 19, 'unit' => 'luna', 'productCode' => '']);
@@ -37,7 +39,7 @@ class InvoiceTest extends TestCase
         $invoice = $api->createInvoice($request);
 
         $this->assertInstanceOf(Invoice::class, $invoice);
-        $this->assertEquals('2024-01-17', $invoice->documentDate->format('Y-m-d'));
+        $this->assertEquals($emissionDate, $invoice->documentDate->format('Y-m-d'));
         $this->assertEquals('1064116434', $invoice->clientId);
         $this->assertEquals(19, $invoice->total);
         $this->assertEquals('RON', $invoice->currency);
@@ -60,7 +62,7 @@ class InvoiceTest extends TestCase
     #[Test]
     public function it_can_retrieve_invoices_as_pdf_in_base64_format()
     {
-        $pdf = Factureaza::sandbox()->invoiceAsPdfBase64('1065255476');
+        $pdf = Factureaza::sandbox()->invoiceAsPdfBase64('1065257076');
         $this->assertIsString($pdf);
         $this->assertStringStartsWith('%PDF', base64_decode($pdf));
     }
@@ -68,27 +70,27 @@ class InvoiceTest extends TestCase
     #[Test]
     public function it_can_retrieve_an_invoice_by_id()
     {
-        $invoice = Factureaza::sandbox()->invoice('1065255476');
+        $invoice = Factureaza::sandbox()->invoice('1065257076');
 
         $this->assertInstanceOf(Invoice::class, $invoice);
-        $this->assertEquals('2024-09-03', $invoice->documentDate->format('Y-m-d'));
-        $this->assertEquals('1064116437', $invoice->clientId);
-        $this->assertEquals(171.36, $invoice->total);
+        $this->assertEquals('2026-02-15', $invoice->documentDate->format('Y-m-d'));
+        $this->assertEquals('1064116438', $invoice->clientId);
+        $this->assertEquals(39242.72, $invoice->total);
         $this->assertEquals('RON', $invoice->currency);
-        $this->assertEquals('SRV-1012', $invoice->number);
-        $this->assertEquals('ff41f136-6992-11ef-b8c2-26f4c2a1', $invoice->hashcode);
+        $this->assertEquals('openapi-4', $invoice->number);
+        $this->assertEquals('8e6fdf39-468e-11f1-a83a-94ca70f2', $invoice->hashcode);
         $this->assertNull($invoice->upperAnnotation);
         //$this->assertEquals("Sperăm intr-o colaborare fructuoasă şi pe viitor.\n Cu stimă maximă și virtute absolută, Ion Pop S.C. DEMO IMPEX S.R.L.", $invoice->lowerAnnotation);
 
-        $this->assertCount(1, $invoice->items);
+        $this->assertCount(2, $invoice->items);
 
         $item = $invoice->items[0];
         $this->assertInstanceOf(InvoiceItem::class, $item);
-        $this->assertEquals('ABONAMENT BASIC', $item->description);
-        $this->assertEquals(12, $item->price);
-        $this->assertEquals('luni', $item->unit);
-        $this->assertEquals('66XXH663496H', $item->productCode);
-        $this->assertEquals(12, $item->quantity);
+        $this->assertEquals('Prestări servicii programare cf. ctc. 3482/03.04.2026', $item->description);
+        $this->assertEquals(235, $item->price);
+        $this->assertEquals('ore', $item->unit);
+        $this->assertNull($item->productCode);
+        $this->assertEquals(74, $item->quantity);
     }
 
     #[Test]
@@ -96,9 +98,9 @@ class InvoiceTest extends TestCase
     {
         $api = Factureaza::sandbox();
 
-        $request = CreateInvoice::inSeries('1061104681')
+        $request = CreateInvoice::inSeries('1061105377')
             ->forClient('1064116434')
-            ->withEmissionDate('2024-01-17')
+            ->withEmissionDate('2026-05-01')
             ->addItem(['description' => 'Service', 'price' => 19, 'unit' => 'luna', 'productCode' => '']);
 
         $invoice = $api->createInvoice($request);
@@ -111,9 +113,9 @@ class InvoiceTest extends TestCase
     {
         $api = Factureaza::sandbox();
 
-        $request = CreateInvoice::inSeries('1061104681')
+        $request = CreateInvoice::inSeries('1061105377')
             ->forClient('1064116434')
-            ->withEmissionDate('2024-01-17')
+            ->withEmissionDate('2026-05-01')
             ->asDraft()
             ->addItem(['description' => 'Service', 'price' => 19, 'unit' => 'luna', 'productCode' => '']);
 

@@ -11,7 +11,7 @@ jobs:
       matrix:
         php: ['8.3', '8.4', '8.5']
         laravel: ['11', '12', '13']
-    name: PHP ${{ matrix.php }} Laravel ${{ matrix.laravel }} Enum ${{ matrix.enum }}
+    name: PHP ${{ matrix.php }} Laravel ${{ matrix.laravel }}
     steps:
       - name: Checkout
         uses: actions/checkout@master
