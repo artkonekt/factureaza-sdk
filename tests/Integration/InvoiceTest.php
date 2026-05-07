@@ -18,11 +18,12 @@ use Konekt\Factureaza\Factureaza;
 use Konekt\Factureaza\Models\Invoice;
 use Konekt\Factureaza\Models\InvoiceItem;
 use Konekt\Factureaza\Requests\CreateInvoice;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class InvoiceTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_create_an_invoice_in_the_sandbox_environment()
     {
         $api = Factureaza::sandbox();
@@ -56,7 +57,7 @@ class InvoiceTest extends TestCase
         $this->assertEquals(1, $item->quantity);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_retrieve_invoices_as_pdf_in_base64_format()
     {
         $pdf = Factureaza::sandbox()->invoiceAsPdfBase64('1065255476');
@@ -64,7 +65,7 @@ class InvoiceTest extends TestCase
         $this->assertStringStartsWith('%PDF', base64_decode($pdf));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_retrieve_an_invoice_by_id()
     {
         $invoice = Factureaza::sandbox()->invoice('1065255476');
@@ -90,7 +91,7 @@ class InvoiceTest extends TestCase
         $this->assertEquals(12, $item->quantity);
     }
 
-    /** @test */
+    #[Test]
     public function a_newly_created_invoice_is_open_by_default()
     {
         $api = Factureaza::sandbox();
@@ -105,7 +106,7 @@ class InvoiceTest extends TestCase
         $this->assertTrue($invoice->state->isOpen(), 'The invoice is not in open state by default');
     }
 
-    /** @test */
+    #[Test]
     public function a_draft_invoice_can_be_explicitly_requested()
     {
         $api = Factureaza::sandbox();

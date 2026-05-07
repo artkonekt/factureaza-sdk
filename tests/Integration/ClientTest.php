@@ -17,11 +17,12 @@ namespace Konekt\Factureaza\Tests\Integration;
 use Konekt\Factureaza\Exceptions\ClientExistsException;
 use Konekt\Factureaza\Factureaza;
 use Konekt\Factureaza\Models\Client;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class ClientTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_fetch_a_client_by_its_id()
     {
         $client = Factureaza::sandbox()->client('1064116434');
@@ -50,7 +51,7 @@ class ClientTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_retrieve_a_client_by_tax_number()
     {
         $client = Factureaza::sandbox()->clientByTaxNo('13548146');
@@ -60,7 +61,7 @@ class ClientTest extends TestCase
         $this->assertEquals('13548146', $client->taxNo);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_retrieve_a_client_by_email()
     {
         $client = Factureaza::sandbox()->clientByEmail('office@cubus.ro');
@@ -70,7 +71,7 @@ class ClientTest extends TestCase
         $this->assertEquals('13548146', $client->taxNo);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_retrieve_a_client_by_name()
     {
         $client = Factureaza::sandbox()->clientByName('CUBUS ARTS S.R.L.');
@@ -80,7 +81,7 @@ class ClientTest extends TestCase
         $this->assertEquals('13548146', $client->taxNo);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_client_with_minimal_data()
     {
         $client = Factureaza::sandbox()->createClient([
@@ -99,7 +100,7 @@ class ClientTest extends TestCase
         $this->assertEquals('RO', $client->country);
     }
 
-    /** @test */
+    #[Test]
     public function attempting_to_create_a_client_with_an_existing_tax_number_throws_duplicate_client_exception()
     {
         $this->expectException(ClientExistsException::class);

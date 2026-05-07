@@ -17,11 +17,12 @@ namespace Konekt\Factureaza\Tests;
 use Konekt\Factureaza\Exceptions\InvalidInvoiceItemException;
 use Konekt\Factureaza\Exceptions\ValidationException;
 use Konekt\Factureaza\Validation\SuperTinyArrayValidator;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class SuperTinyArrayValidatorTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_be_instantiated()
     {
         $this->assertInstanceOf(
@@ -30,7 +31,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_validate_a_mandatory_string()
     {
         $validator = SuperTinyArrayValidator::createFor('invoice item');
@@ -42,7 +43,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         $this->assertEquals($data, $validated);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_validate_an_optional_string()
     {
         $validator = SuperTinyArrayValidator::createFor('invoice item');
@@ -54,7 +55,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         $this->assertEquals($data, $validated);
     }
 
-    /** @test */
+    #[Test]
     public function it_allows_null_for_an_optional_string()
     {
         $validator = SuperTinyArrayValidator::createFor('invoice item');
@@ -64,7 +65,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         $this->assertEquals($data, $validator->validate($schema, $data));
     }
 
-    /** @test */
+    #[Test]
     public function it_does_not_allow_integer_for_an_optional_string()
     {
         $validator = SuperTinyArrayValidator::createFor('invoice item');
@@ -73,7 +74,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         $validator->validate(['name' => 'string'], ['name' => 1]);
     }
 
-    /** @test */
+    #[Test]
     public function the_default_value_for_an_optional_field_can_be_set()
     {
         $validator = SuperTinyArrayValidator::createFor('invoice item');
@@ -82,7 +83,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         $this->assertEquals('1', $validated['quantity']);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_validate_a_mandatory_number()
     {
         $validator = SuperTinyArrayValidator::createFor('invoice item');
@@ -94,7 +95,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         $this->assertEquals($data, $validated);
     }
 
-    /** @test */
+    #[Test]
     public function it_does_not_allow_null_for_a_mandatory_number()
     {
         $validator = SuperTinyArrayValidator::createFor('invoice item');
@@ -104,7 +105,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         $validator->validate(['price' => 'number*'], ['price' => null]);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_validate_an_optional_number()
     {
         $validator = SuperTinyArrayValidator::createFor('invoice item');
@@ -116,7 +117,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         $this->assertEquals($data, $validated);
     }
 
-    /** @test */
+    #[Test]
     public function it_allows_null_for_an_optional_number()
     {
         $validator = SuperTinyArrayValidator::createFor('invoice item');
@@ -126,7 +127,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         $this->assertEquals($data, $validator->validate($schema, $data));
     }
 
-    /** @test */
+    #[Test]
     public function a_default_for_numbers_can_be_set()
     {
         $validator = SuperTinyArrayValidator::createFor('invoice item');
@@ -136,7 +137,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         $this->assertEquals(['qty' => 1], $validator->validate($schema, $data));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_validate_an_optional_bool()
     {
         $validator = SuperTinyArrayValidator::createFor('client');
@@ -148,7 +149,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         $this->assertEquals($data, $validated);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_validate_a_mandatory_bool()
     {
         $validator = SuperTinyArrayValidator::createFor('client');
@@ -160,7 +161,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         $this->assertEquals($data, $validated);
     }
 
-    /** @test */
+    #[Test]
     public function it_allows_0_as_boolean_false()
     {
         $validator = SuperTinyArrayValidator::createFor('client');
@@ -170,7 +171,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         $this->assertFalse($validator->validate($schema, $data)['isCompany']);
     }
 
-    /** @test */
+    #[Test]
     public function it_allows_1_as_boolean_true()
     {
         $validator = SuperTinyArrayValidator::createFor('client');
@@ -180,7 +181,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         $this->assertTrue($validator->validate($schema, $data)['isCompany']);
     }
 
-    /** @test */
+    #[Test]
     public function it_throws_a_validation_exception_if_a_mandatory_bool_is_null()
     {
         $validator = SuperTinyArrayValidator::createFor('invoice');
@@ -191,7 +192,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         $validator->validate($schema, $data);
     }
 
-    /** @test */
+    #[Test]
     public function it_throws_a_validation_exception_if_a_mandatory_field_is_missing()
     {
         $validator = SuperTinyArrayValidator::createFor('invoice');
@@ -202,7 +203,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         $validator->validate($schema, $data);
     }
 
-    /** @test */
+    #[Test]
     public function it_throws_a_validation_exception_if_a_mandatory_field_is_null()
     {
         $validator = SuperTinyArrayValidator::createFor('invoice');
@@ -213,7 +214,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         $validator->validate($schema, $data);
     }
 
-    /** @test */
+    #[Test]
     public function the_exception_message_tells_that_the_value_is_null()
     {
         $validator = SuperTinyArrayValidator::createFor('customer');
@@ -222,7 +223,7 @@ class SuperTinyArrayValidatorTest extends TestCase
         $validator->validate(['name' => 'string*'], ['name' => null]);
     }
 
-    /** @test */
+    #[Test]
     public function the_exception_type_can_be_specified()
     {
         $validator = SuperTinyArrayValidator::createFor('invoice item')

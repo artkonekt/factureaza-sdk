@@ -16,11 +16,12 @@ namespace Konekt\Factureaza\Tests\Integration;
 
 use Konekt\Factureaza\Factureaza;
 use Konekt\Factureaza\Models\MyAccount;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class AccountTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_connect_to_the_sandbox_and_retrieves_all_the_account_data()
     {
         $account = Factureaza::sandbox()->myAccount();

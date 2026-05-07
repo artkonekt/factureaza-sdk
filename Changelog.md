@@ -1,5 +1,15 @@
 # Factureaza PHP SDK Changelog
 
+## Unreleased
+##### 2026-XX-YY
+
+- Added support for Laravel 12 & 13
+- Added support for PHP 8.4 & PHP 8.5
+- Changed the minimum PHP version to 8.3
+- Changed the minimum Carbon version to 3.8
+- Dropped support for Laravel 8, 9 and 10
+- Dropped support for Carbon 2
+
 ## 1.6.0
 ##### 2024-09-12
 
