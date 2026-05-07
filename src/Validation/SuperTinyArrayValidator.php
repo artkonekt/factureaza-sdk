@@ -71,7 +71,7 @@ class SuperTinyArrayValidator
         return ValidationResult::FAILED();
     }
 
-    private function asOptionalString(mixed $value, string $default = null): string|null|ValidationResult
+    private function asOptionalString(mixed $value, ?string $default = null): string|null|ValidationResult
     {
         if (null === $value) {
             return $default;
@@ -113,7 +113,7 @@ class SuperTinyArrayValidator
         return ValidationResult::FAILED();
     }
 
-    private function asOptionalNumber(mixed $value, float|int $default = null): float|int|null|ValidationResult
+    private function asOptionalNumber(mixed $value, float|int|null $default = null): float|int|null|ValidationResult
     {
         if (null === $value) {
             return $default;

@@ -11,6 +11,7 @@
 - Dropped support for Carbon 2
 - Dropped support for Enum v3
 - Fixed failing tests with 2026 Sandbox data
+- Fixed several PHP deprecation notices
 
 ## 1.6.0
 ##### 2024-09-12
