@@ -1,7 +1,7 @@
 # Factureaza PHP SDK Changelog
 
-## Unreleased
-##### 2026-XX-YY
+## 1.7.0
+##### 2026-05-07
 
 - Added support for Laravel 12 & 13
 - Added support for PHP 8.4 & PHP 8.5
